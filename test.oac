@@ -1,0 +1,127 @@
+; ============================================
+; One-Address Code — Bahasa Suka Suka
+; ACC = implicit accumulator register
+; ============================================
+
+main:
+    LOADI 0    ; default init n
+    STORE n
+    LOADI 0    ; default init i
+    STORE i
+    LOADI 0    ; default init hasil
+    STORE hasil
+    OUTI "Masukkan bilangan: "    ; print literal
+    OUTNL    ; newline
+    IN n    ; read into n
+    LOADI 0    ; literal 0
+    STORE hasil    ; assign to hasil
+    LOADI 1    ; literal 1
+    STORE i    ; assign to i
+_while0:
+    LOAD i    ; load i
+    STORE _t0    ; save left operand
+    LOAD n    ; load n
+    STORE _t1    ; save right operand
+    LOAD _t0    ; restore left to ACC
+    CMP _t1    ; compare
+    JLE _cmp_t2
+    LOADI 0    ; false
+    JMP _cmp_d3
+_cmp_t2:
+    LOADI 1    ; true
+_cmp_d3:
+    CMPI 0    ; test condition
+    JEQ _wdone1    ; exit if false
+    LOAD hasil    ; load hasil
+    STORE _t2    ; save left operand
+    LOAD i    ; load i
+    STORE _t3    ; save right operand
+    LOAD _t2    ; restore left to ACC
+    ADD _t3
+    STORE hasil    ; assign to hasil
+    LOAD i    ; load i
+    STORE _t4    ; save left operand
+    LOADI 1    ; literal 1
+    STORE _t5    ; save right operand
+    LOAD _t4    ; restore left to ACC
+    ADD _t5
+    STORE i    ; assign to i
+    JMP _while0    ; repeat
+_wdone1:
+    OUTI "Jumlah 1 sampai "    ; print literal
+    OUT n    ; print n
+    OUTI " adalah: "    ; print literal
+    OUT hasil    ; print hasil
+    OUTNL    ; newline
+    LOAD hasil    ; load hasil
+    STORE _t6    ; save left operand
+    LOADI 100    ; literal 100
+    STORE _t7    ; save right operand
+    LOAD _t6    ; restore left to ACC
+    CMP _t7    ; compare
+    JGT _cmp_t6
+    LOADI 0    ; false
+    JMP _cmp_d7
+_cmp_t6:
+    LOADI 1    ; true
+_cmp_d7:
+    CMPI 0    ; test condition
+    JEQ _if_fail5    ; jump if false
+    OUTI "Hasilnya besar!"    ; print literal
+    OUTNL    ; newline
+    JMP _if_done4    ; skip remaining branches
+_if_fail5:
+    LOAD hasil    ; load hasil
+    STORE _t8    ; save left operand
+    LOADI 50    ; literal 50
+    STORE _t9    ; save right operand
+    LOAD _t8    ; restore left to ACC
+    CMP _t9    ; compare
+    JGT _cmp_t9
+    LOADI 0    ; false
+    JMP _cmp_d10
+_cmp_t9:
+    LOADI 1    ; true
+_cmp_d10:
+    CMPI 0    ; test condition
+    JEQ _if_fail8    ; jump if false
+    OUTI "Hasilnya sedang."    ; print literal
+    OUTNL    ; newline
+    JMP _if_done4    ; skip remaining branches
+_if_fail8:
+    OUTI "Hasilnya kecil."    ; print literal
+    OUTNL    ; newline
+_if_done4:
+    LOADI 0    ; default init x
+    STORE x
+    LOADI 1    ; literal 1
+    STORE x    ; for init
+_for11:
+    LOAD x    ; load x
+    STORE _t10    ; save left operand
+    LOADI 5    ; literal 5
+    STORE _t11    ; save right operand
+    LOAD _t10    ; restore left to ACC
+    CMP _t11    ; compare
+    JLE _cmp_t14
+    LOADI 0    ; false
+    JMP _cmp_d15
+_cmp_t14:
+    LOADI 1    ; true
+_cmp_d15:
+    CMPI 0    ; for cond
+    JEQ _for_done13
+    OUT x    ; print x
+    OUTI " "    ; print literal
+_for_step12:
+    LOAD x    ; load x
+    STORE _t12    ; save left operand
+    LOADI 1    ; literal 1
+    STORE _t13    ; save right operand
+    LOAD _t12    ; restore left to ACC
+    ADD _t13
+    STORE x    ; assign to x
+    JMP _for11
+_for_done13:
+    OUTNL    ; newline
+    HALT    ; end of program

@@ -1,0 +1,35 @@
+// Program test Bahasa Suka Suka
+// Menguji: deklarasi, assignment, I/O, loop, if/else
+
+angka n;
+angka i;
+angka hasil;
+
+keluarin << "Masukkan bilangan: " << endl;
+masukin >> n;
+
+hasil itu 0;
+i itu 1;
+
+ulang kalau i <= n {
+    hasil itu hasil + i;
+    i itu i + 1;
+}
+
+keluarin << "Jumlah 1 sampai " << n << " adalah: " << hasil << endl;
+
+// Test if-else
+kalau hasil > 100 {
+    keluarin << "Hasilnya besar!" << endl;
+} kalau tidak hasil > 50 {
+    keluarin << "Hasilnya sedang." << endl;
+} lain {
+    keluarin << "Hasilnya kecil." << endl;
+}
+
+// Test for loop
+angka x;
+untuk x itu 1 trs x <= 5 nah x itu x + 1 {
+    keluarin << x << " ";
+}
+keluarin << endl;

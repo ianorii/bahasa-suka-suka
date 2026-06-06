@@ -1,0 +1,71 @@
+
+keluarin << "██╗  ██╗███████╗██╗      ██████╗ ███╗   ███╗██████╗  ██████╗ ██╗  ██╗\n";
+keluarin << "██║ ██╔╝██╔════╝██║     ██╔═══██╗████╗ ████║██╔══██╗██╔═══██╗██║ ██╔╝\n";
+keluarin << "█████╔╝ █████╗  ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║█████╔╝\n";
+keluarin << "██╔═██╗ ██╔══╝  ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║██╔═██╗\n";
+keluarin << "██║  ██╗███████╗███████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝██║  ██╗\n";
+keluarin << "╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝\n";
+keluarin << "\n";
+keluarin << "                            ███████╗\n";
+keluarin << "                            ██╔════╝\n";
+keluarin << "                            ███████╗\n";
+keluarin << "                            ╚════██║\n";
+keluarin << "                            ███████║\n";
+keluarin << "                            ╚══════╝\n";
+
+// CEK KPK DAN FPB
+ulang kalau 1 {
+    huruf cek;
+    keluarin << "\nlanjut atau ngga? (Y/N) : ";
+    masukin >> cek;
+    
+    angka flag = 0;
+
+    kalau cek == "N" {
+        keluarin << "OKEE BYE BYEEE :3\n";
+        berhenti;
+    } kalau tidak cek != "Y" {
+        ulang kalau cek != "Y" atau cek != "N" {
+            keluarin << "opsinya cuma Y/N woyy\n";
+            keluarin << "\nlanjut atau ngga? (Y/N) : ";
+            masukin >> cek;
+            kalau cek == "N" {
+                flag = 1;
+                berhenti;
+            } kalau tidak cek == "Y" {
+                berhenti;
+            }
+        }
+    }
+
+    kalau flag == 1 {
+        keluarin << "OKEE BYE BYEEE :3\n";
+        berhenti;
+    }
+
+    angka a, b, num1, num2, kpk, fpb, sisa;
+    keluarin << "masukan bilang pertama : ";
+    masukin >> num1;
+
+    keluarin << "masukan bilang kedua : ";
+    masukin >> num2;
+
+    a = num1;
+    b = num2;
+
+    ulang kalau b != 0 {
+        sisa = a % b;
+        a = b;
+        b = sisa;
+    }
+
+    fpb = a;
+
+    kpk = num1 * num2 / fpb;
+
+    keluarin << "========================\n";
+    keluarin << "fpb : " << fpb << endl;
+    keluarin << "kpk : " << kpk << endl;
+    keluarin << "========================\n";
+
+}

@@ -1,0 +1,240 @@
+; ============================================
+; One-Address Code — Bahasa Suka Suka
+; ACC = implicit accumulator register
+; ============================================
+
+main:
+    OUTI "██╗  ██╗███████╗██╗      ██████╗ ███╗   ███╗██████╗  ██████╗ ██╗  ██╗\n"    ; print literal
+    OUTI "██║ ██╔╝██╔════╝██║     ██╔═══██╗████╗ ████║██╔══██╗██╔═══██╗██║ ██╔╝\n"    ; print literal
+    OUTI "█████╔╝ █████╗  ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║█████╔╝\n"    ; print literal
+    OUTI "██╔═██╗ ██╔══╝  ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║██╔═██╗\n"    ; print literal
+    OUTI "██║  ██╗███████╗███████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝██║  ██╗\n"    ; print literal
+    OUTI "╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝\n"    ; print literal
+    OUTI "\n"    ; print literal
+    OUTI "                            ███████╗\n"    ; print literal
+    OUTI "                            ██╔════╝\n"    ; print literal
+    OUTI "                            ███████╗\n"    ; print literal
+    OUTI "                            ╚════██║\n"    ; print literal
+    OUTI "                            ███████║\n"    ; print literal
+    OUTI "                            ╚══════╝\n"    ; print literal
+_while0:
+    LOADI 1    ; literal 1
+    CMPI 0    ; test condition
+    JEQ _wdone1    ; exit if false
+    LOADI 0    ; default init cek
+    STORE cek
+    OUTI "\nlanjut atau ngga? (Y/N) : "    ; print literal
+    IN cek    ; read into cek
+    LOADI 0    ; literal 0
+    STORE flag    ; init flag
+    LOAD cek    ; load cek
+    STORE _t0    ; save left operand
+    LOADI "N"    ; literal "N"
+    STORE _t1    ; save right operand
+    LOAD _t0    ; restore left to ACC
+    CMP _t1    ; compare
+    JEQ _cmp_t4
+    LOADI 0    ; false
+    JMP _cmp_d5
+_cmp_t4:
+    LOADI 1    ; true
+_cmp_d5:
+    CMPI 0    ; test condition
+    JEQ _if_fail3    ; jump if false
+    OUTI "OKEE BYE BYEEE :3\n"    ; print literal
+    JMP _wdone1    ; break
+    JMP _if_done2    ; skip remaining branches
+_if_fail3:
+    LOAD cek    ; load cek
+    STORE _t2    ; save left operand
+    LOADI "Y"    ; literal "Y"
+    STORE _t3    ; save right operand
+    LOAD _t2    ; restore left to ACC
+    CMP _t3    ; compare
+    JNE _cmp_t7
+    LOADI 0    ; false
+    JMP _cmp_d8
+_cmp_t7:
+    LOADI 1    ; true
+_cmp_d8:
+    CMPI 0    ; test condition
+    JEQ _if_fail6    ; jump if false
+_while9:
+    LOAD cek    ; load cek
+    STORE _t4    ; save left operand
+    LOADI "Y"    ; literal "Y"
+    STORE _t5    ; save right operand
+    LOAD _t4    ; restore left to ACC
+    CMP _t5    ; compare
+    JNE _cmp_t11
+    LOADI 0    ; false
+    JMP _cmp_d12
+_cmp_t11:
+    LOADI 1    ; true
+_cmp_d12:
+    STORE _t6    ; save left operand
+    LOAD cek    ; load cek
+    STORE _t7    ; save left operand
+    LOADI "N"    ; literal "N"
+    STORE _t8    ; save right operand
+    LOAD _t7    ; restore left to ACC
+    CMP _t8    ; compare
+    JNE _cmp_t13
+    LOADI 0    ; false
+    JMP _cmp_d14
+_cmp_t13:
+    LOADI 1    ; true
+_cmp_d14:
+    STORE _t9    ; save right operand
+    LOAD _t6    ; restore left to ACC
+    LOAD _t6
+    CMPI 0
+    JNE _or_t15    ; short-circuit OR
+    LOAD _t9
+    CMPI 0
+    JNE _or_t15
+    LOADI 0
+    JMP _or_d16
+_or_t15:
+    LOADI 1
+_or_d16:
+    CMPI 0    ; test condition
+    JEQ _wdone10    ; exit if false
+    OUTI "opsinya cuma Y/N woyy\n"    ; print literal
+    OUTI "\nlanjut atau ngga? (Y/N) : "    ; print literal
+    IN cek    ; read into cek
+    LOAD cek    ; load cek
+    STORE _t10    ; save left operand
+    LOADI "N"    ; literal "N"
+    STORE _t11    ; save right operand
+    LOAD _t10    ; restore left to ACC
+    CMP _t11    ; compare
+    JEQ _cmp_t19
+    LOADI 0    ; false
+    JMP _cmp_d20
+_cmp_t19:
+    LOADI 1    ; true
+_cmp_d20:
+    CMPI 0    ; test condition
+    JEQ _if_fail18    ; jump if false
+    LOADI 1    ; literal 1
+    STORE flag    ; assign to flag
+    JMP _wdone10    ; break
+    JMP _if_done17    ; skip remaining branches
+_if_fail18:
+    LOAD cek    ; load cek
+    STORE _t12    ; save left operand
+    LOADI "Y"    ; literal "Y"
+    STORE _t13    ; save right operand
+    LOAD _t12    ; restore left to ACC
+    CMP _t13    ; compare
+    JEQ _cmp_t22
+    LOADI 0    ; false
+    JMP _cmp_d23
+_cmp_t22:
+    LOADI 1    ; true
+_cmp_d23:
+    CMPI 0    ; test condition
+    JEQ _if_fail21    ; jump if false
+    JMP _wdone10    ; break
+    JMP _if_done17    ; skip remaining branches
+_if_fail21:
+_if_done17:
+    JMP _while9    ; repeat
+_wdone10:
+    JMP _if_done2    ; skip remaining branches
+_if_fail6:
+_if_done2:
+    LOAD flag    ; load flag
+    STORE _t14    ; save left operand
+    LOADI 1    ; literal 1
+    STORE _t15    ; save right operand
+    LOAD _t14    ; restore left to ACC
+    CMP _t15    ; compare
+    JEQ _cmp_t26
+    LOADI 0    ; false
+    JMP _cmp_d27
+_cmp_t26:
+    LOADI 1    ; true
+_cmp_d27:
+    CMPI 0    ; test condition
+    JEQ _if_fail25    ; jump if false
+    OUTI "OKEE BYE BYEEE :3\n"    ; print literal
+    JMP _if_done24    ; skip remaining branches
+_if_fail25:
+_if_done24:
+    LOADI 0    ; default init a
+    STORE a
+    LOADI 0    ; default init b
+    STORE b
+    LOADI 0    ; default init num1
+    STORE num1
+    LOADI 0    ; default init num2
+    STORE num2
+    LOADI 0    ; default init kpk
+    STORE kpk
+    LOADI 0    ; default init fpb
+    STORE fpb
+    LOADI 0    ; default init sisa
+    STORE sisa
+    OUTI "masukan bilang pertama : "    ; print literal
+    IN num1    ; read into num1
+    OUTI "masukan bilang kedua : "    ; print literal
+    IN num2    ; read into num2
+    LOAD num1    ; load num1
+    STORE a    ; assign to a
+    LOAD num2    ; load num2
+    STORE b    ; assign to b
+_while28:
+    LOAD b    ; load b
+    STORE _t16    ; save left operand
+    LOADI 0    ; literal 0
+    STORE _t17    ; save right operand
+    LOAD _t16    ; restore left to ACC
+    CMP _t17    ; compare
+    JNE _cmp_t30
+    LOADI 0    ; false
+    JMP _cmp_d31
+_cmp_t30:
+    LOADI 1    ; true
+_cmp_d31:
+    CMPI 0    ; test condition
+    JEQ _wdone29    ; exit if false
+    LOAD a    ; load a
+    STORE _t18    ; save left operand
+    LOAD b    ; load b
+    STORE _t19    ; save right operand
+    LOAD _t18    ; restore left to ACC
+    MOD _t19
+    STORE sisa    ; assign to sisa
+    LOAD b    ; load b
+    STORE a    ; assign to a
+    LOAD sisa    ; load sisa
+    STORE b    ; assign to b
+    JMP _while28    ; repeat
+_wdone29:
+    LOAD a    ; load a
+    STORE fpb    ; assign to fpb
+    LOAD num1    ; load num1
+    STORE _t20    ; save left operand
+    LOAD num2    ; load num2
+    STORE _t21    ; save right operand
+    LOAD _t20    ; restore left to ACC
+    MUL _t21
+    STORE _t22    ; save left operand
+    LOAD fpb    ; load fpb
+    STORE _t23    ; save right operand
+    LOAD _t22    ; restore left to ACC
+    DIV _t23
+    STORE kpk    ; assign to kpk
+    OUTI "========================\n"    ; print literal
+    OUTI "fpb : "    ; print literal
+    OUT fpb    ; print fpb
+    OUTNL    ; newline
+    OUTI "kpk : "    ; print literal
+    OUT kpk    ; print kpk
+    OUTNL    ; newline
+    OUTI "========================\n"    ; print literal
+    JMP _while0    ; repeat
+_wdone1:
+    HALT    ; end of program

@@ -1,0 +1,2 @@
+angka i = 5;
+keluarin << i;
