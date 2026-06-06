@@ -96,6 +96,7 @@ void printAST(ASTNodePtr n, int depth = 0) {
 }
 
 int main(int argc, char* argv[]) {
+    system("chcp 65001");
     printBanner();
 
     if (argc < 2) {
