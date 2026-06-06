@@ -2,6 +2,58 @@
 
 Compiler untuk Bahasa Suka Suka, dibangun di atas fondasi **Turing Machine** dan dilengkapi mode **One-Address Code (OAC)**.
 
+## Sintaks Bahasa Suka Suka
+
+### Tipe Data
+| Tipe | Setara C++ | Contoh |
+|------|-----------|--------|
+| `angka` | `long long` | `angka x = 10;` |
+| `ngambang` | `float` | `ngambang pi = 3.14;` |
+| `huruf` | `string` | `huruf nama = "Rian";` |
+
+### Deklarasi & Assignment
+| Sintaks | Contoh |
+|---------|--------|
+| Deklarasi | `angka x;` |
+| Deklarasi + init | `angka x = 10;` |
+| Assignment | `x = 20;` |
+| Multi deklarasi | `angka x, y, z;` |
+
+### Operator
+| Kategori | Operator |
+|----------|----------|
+| Aritmatika | `+` `-` `*` `/` `%` |
+| Perbandingan | `==` `!=` `<` `>` `<=` `>=` |
+| Logika | `dan` `atau` |
+
+### Input & Output
+| Sintaks | Contoh |
+|---------|--------|
+| Output | `keluarin << x;` |
+| Output banyak | `keluarin << "nilai: " << x << endl;` |
+| Input | `masukin >> x;` |
+| Input banyak | `masukin >> x >> y;` |
+
+### Percabangan
+| Sintaks | Contoh |
+|---------|--------|
+| If | `kalau x > 0 { ... }` |
+| Else if | `kalau tidak x == 0 { ... }` |
+| Else | `lain { ... }` |
+
+### Perulangan
+| Sintaks | Contoh |
+|---------|--------|
+| While | `ulang kalau x < 10 { ... }` |
+| For | `untuk i itu 0 trs i < 5 nah i itu i + 1 { ... }` |
+| Break | `berhenti;` |
+| Continue | `lanjut;` |
+
+### Komentar
+| Sintaks | Contoh |
+|---------|--------|
+| Satu baris | `// ini komentar` |
+
 ## Struktur File
 
 ```
@@ -29,11 +81,11 @@ make          # Kompilasi compiler
 ## Cara Pakai
 
 ```bash
-./compiler <file.suka>           # Kompilasi + jalankan langsung
-./compiler <file.suka> --oac     # Hasilkan One-Address Code (.oac)
-./compiler <file.suka> --tokens  # Tampilkan hasil tokenisasi TM
-./compiler <file.suka> --ast     # Tampilkan struktur AST
-./compiler <file.suka> --cpp     # Cetak C++ yang dihasilkan
+compiler <file.suka>           # Kompilasi + jalankan langsung
+compiler <file.suka> --oac     # Hasilkan One-Address Code (.oac)
+compiler <file.suka> --tokens  # Tampilkan hasil tokenisasi TM
+compiler <file.suka> --ast     # Tampilkan struktur AST
+compiler <file.suka> --cpp     # Cetak C++ yang dihasilkan
 ```
 
 ---
