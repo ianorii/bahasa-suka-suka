@@ -103,7 +103,7 @@ OAC adalah arsitektur **akumulator implisit** — hanya satu operand eksplisit p
 
 Suka Suka:
 ```
-hasil itu hasil + i;
+hasil = hasil + i;
 ```
 
 OAC yang dihasilkan:
