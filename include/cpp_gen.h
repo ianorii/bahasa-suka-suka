@@ -140,7 +140,7 @@ private:
                 break;
 
             case NodeType::FOR_STMT:
-                ss << ind() << "for (";
+                ss << ind() << "for (int ";
                 ss << n->children[0]->sval << " = ";
                 genExpr(n->children[1], ss);
                 ss << "; ";
@@ -150,6 +150,16 @@ private:
                 if (n->children[3]->type == NodeType::ASSIGN) {
                     ss << n->children[3]->children[0]->sval << " = ";
                     genExpr(n->children[3]->children[1], ss);
+                } else if (n->children[3]->type == NodeType::INC_STMT) {
+                    ss << n->children[3]->sval << "++";
+                } else if (n->children[3]->type == NodeType::PLUS_ASSIGN_STMT) {
+                    ss << n->children[3]->sval << " += ";
+                    genExpr(n->children[3]->children[0], ss);
+                } else if (n->children[3]->type == NodeType::DEC_STMT) {
+                    ss << n->children[3]->sval << "--";
+                } else if (n->children[3]->type == NodeType::MINUS_ASSIGN_STMT) {
+                    ss << n->children[3]->sval << " -= ";
+                    genExpr(n->children[3]->children[0], ss);
                 } else {
                     genExpr(n->children[3], ss);
                 }

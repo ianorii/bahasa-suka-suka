@@ -52,6 +52,10 @@ enum class NodeType {
     PROGRAM,
     VAR_DECL,       // tipe nama [= expr]
     ASSIGN,         // nama itu expr
+    INC_STMT,         // nama++
+    DEC_STMT,         // nama--
+    PLUS_ASSIGN_STMT, // nama += expr
+    MINUS_ASSIGN_STMT,// nama -= expr
     EXPR_STMT,      // expr;
     BLOCK,          // { stmts }
     IF_STMT,        // kalau / kalau tidak / lain

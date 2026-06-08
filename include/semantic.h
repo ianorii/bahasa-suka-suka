@@ -140,6 +140,38 @@ private:
                 break;
             }
 
+            case NodeType::FOR_STMT: {
+                std::string varName = n->children[0]->sval;
+                if (!sym->has(varName))
+                    sym->declare(varName, "angka", n->tok.line);
+                visitNode(n->children[1]);
+                visitNode(n->children[2]);
+                visitNode(n->children[3]);
+                visitNode(n->children[4]);
+                break;
+            }
+            case NodeType::INC_STMT: {
+                if (!sym->has(n->sval))
+                    throw SemanticError("Variabel '" + n->sval + "' belum dideklarasikan!", n->tok.line);
+                break;
+            }
+            case NodeType::PLUS_ASSIGN_STMT: {
+                if (!sym->has(n->sval))
+                    throw SemanticError("Variabel '" + n->sval + "' belum dideklarasikan!", n->tok.line);
+                visitNode(n->children[0]);
+                break;
+            }
+            case NodeType::DEC_STMT: {
+                if (!sym->has(n->sval))
+                    throw SemanticError("Variabel '" + n->sval + "' belum dideklarasikan!", n->tok.line);
+                break;
+            }
+            case NodeType::MINUS_ASSIGN_STMT: {
+                if (!sym->has(n->sval))
+                    throw SemanticError("Variabel '" + n->sval + "' belum dideklarasikan!", n->tok.line);
+                visitNode(n->children[0]);
+                break;
+            }
             default:
                 for (auto& child : n->children) visitNode(child);
                 break;

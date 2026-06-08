@@ -34,6 +34,10 @@ enum class TokenType {
     OP_EQ,  OP_NEQ,
     OP_LT,  OP_GT,  OP_LTE,  OP_GTE,
     OP_PLUS, OP_MINUS, OP_MUL, OP_DIV, OP_MOD,
+    OP_INC,           // ++
+    OP_DEC,           // --
+    OP_PLUS_ASSIGN,   // +=
+    OP_MINUS_ASSIGN,  // -=
     OP_STREAM_IN,     // >>
     OP_STREAM_OUT,    // <<
 
@@ -89,6 +93,10 @@ struct Token {
             {(int)TokenType::OP_LTE,         "<="},
             {(int)TokenType::OP_GTE,         ">="},
             {(int)TokenType::OP_PLUS,        "+"},
+            {(int)TokenType::OP_INC,          "++"},
+            {(int)TokenType::OP_DEC,          "--"},
+            {(int)TokenType::OP_PLUS_ASSIGN,  "+="},
+            {(int)TokenType::OP_MINUS_ASSIGN, "-="},
             {(int)TokenType::OP_MINUS,       "-"},
             {(int)TokenType::OP_MUL,         "*"},
             {(int)TokenType::OP_DIV,         "/"},

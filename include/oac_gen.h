@@ -218,6 +218,22 @@ private:
                 emit("STORE", n->children[0]->sval, "assign to " + n->children[0]->sval);
                 break;
 
+            case NodeType::INC_STMT:
+                emit("LOAD",  n->sval, "load for ++");
+                emit("PUSHI", "1",     "increment by 1");
+                emit("ADD",   "",      "i++");
+                emit("STORE", n->sval, "store i++");
+                break;
+
+            case NodeType::PLUS_ASSIGN_STMT:
+                emit("LOAD",  n->sval, "load for +=");
+                genExpr(n->children[0]);
+                emit("ADD",   "",      "+=");
+                emit("STORE", n->sval, "store +=");
+                break;
+
+            
+
             case NodeType::EXPR_STMT:
                 genExpr(n->children[0]);
                 break;

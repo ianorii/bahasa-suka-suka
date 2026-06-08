@@ -235,8 +235,16 @@ private:
             case '(': advance(); emit(TokenType::LPAREN,       "("); return;
             case ')': advance(); emit(TokenType::RPAREN,       ")"); return;
             case ',': advance(); emit(TokenType::COMMA,        ","); return;
-            case '+': advance(); emit(TokenType::OP_PLUS,      "+"); return;
-            case '-': advance(); emit(TokenType::OP_MINUS,     "-"); return;
+            case '+':
+                advance();
+                if (input[pos] == '+') { advance(); emit(TokenType::OP_INC,         "++"); return; }
+                if (input[pos] == '=') { advance(); emit(TokenType::OP_PLUS_ASSIGN, "+="); return; }
+                emit(TokenType::OP_PLUS, "+"); return;
+            case '-':
+                advance();
+                if (input[pos] == '-') { advance(); emit(TokenType::OP_DEC,          "--"); return; }
+                if (input[pos] == '=') { advance(); emit(TokenType::OP_MINUS_ASSIGN, "-="); return; }
+                emit(TokenType::OP_MINUS, "-"); return;
             case '*': advance(); emit(TokenType::OP_MUL,       "*"); return;
             case '/': advance(); emit(TokenType::OP_DIV,       "/"); return;
             case '%': advance(); emit(TokenType::OP_MOD,       "%"); return;

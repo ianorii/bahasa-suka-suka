@@ -218,15 +218,41 @@ private:
 
         // nah step — bisa berupa "nama itu expr" atau "nama++" dsb.
         expect(TokenType::KW_NAH, "'nah' tidak ditemukan di 'untuk'");
-        // Baca step sebagai assignment atau expr
-        if (cur().type == TokenType::IDENTIFIER && peek().type == TokenType::KW_ITU) {
-            Token sn = advance(); advance(); // nama, itu
-            auto sNode = std::make_shared<ASTNode>(NodeType::ASSIGN, sn);
-            auto snv   = std::make_shared<ASTNode>(NodeType::EXPR_VAR, sn);
-            snv->sval  = sn.value;
-            sNode->add(snv);
-            sNode->add(parseExpr());
-            node->add(sNode);
+        if (cur().type == TokenType::IDENTIFIER) {
+            Token sn = cur();
+            if (peek().type == TokenType::KW_ITU) {
+                advance(); advance(); // nama, itu
+                auto sNode = std::make_shared<ASTNode>(NodeType::ASSIGN, sn);
+                auto snv   = std::make_shared<ASTNode>(NodeType::EXPR_VAR, sn);
+                snv->sval  = sn.value;
+                sNode->add(snv);
+                sNode->add(parseExpr());
+                node->add(sNode);
+            } else if (peek().type == TokenType::OP_INC) {
+                advance(); advance(); // nama, ++
+                auto sNode = std::make_shared<ASTNode>(NodeType::INC_STMT, sn);
+                sNode->sval = sn.value;
+                node->add(sNode);
+            } else if (peek().type == TokenType::OP_PLUS_ASSIGN) {
+                advance(); advance(); // nama, +=
+                auto sNode = std::make_shared<ASTNode>(NodeType::PLUS_ASSIGN_STMT, sn);
+                sNode->sval = sn.value;
+                sNode->add(parseExpr());
+                node->add(sNode);
+            } else if (peek().type == TokenType::OP_DEC) {
+                advance(); advance(); // nama, --
+                auto sNode = std::make_shared<ASTNode>(NodeType::DEC_STMT, sn);
+                sNode->sval = sn.value;
+                node->add(sNode);
+            } else if (peek().type == TokenType::OP_MINUS_ASSIGN) {
+                advance(); advance(); // nama, -=
+                auto sNode = std::make_shared<ASTNode>(NodeType::MINUS_ASSIGN_STMT, sn);
+                sNode->sval = sn.value;
+                sNode->add(parseExpr());
+                node->add(sNode);
+            } else {
+                node->add(parseExpr());
+            }
         } else {
             node->add(parseExpr());
         }
