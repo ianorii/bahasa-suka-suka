@@ -45,7 +45,7 @@ Compiler untuk Bahasa Suka Suka, dibangun di atas fondasi **Turing Machine** dan
 | Sintaks | Contoh |
 |---------|--------|
 | While | `ulang kalau x < 10 { ... }` |
-| For | `untuk i itu 0 trs i < 5 nah i itu i++ { ... }` |
+| For | `untuk i itu 0 trs i < 5 nah i i++ { ... }` |
 | Break | `berhenti;` |
 | Continue | `lanjut;` |
 
