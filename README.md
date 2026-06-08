@@ -1,4 +1,3 @@
-# Tugas Teori Bahasa dan Kompilasi
 # Bahasa Suka Suka Compiler v2.0 — TM Edition
 
 Compiler untuk Bahasa Suka Suka, dibangun di atas fondasi **Turing Machine** dan dilengkapi mode **One-Address Code (OAC)**.
